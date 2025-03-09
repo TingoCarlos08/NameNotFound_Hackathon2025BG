@@ -303,6 +303,9 @@ const DashboardPage: React.FC = () => {
 
       <footer className="dashboard-footer">
         <p>TrustBridge © 2023 - Construyendo puentes de confianza financiera</p>
+        <a href="/operator" style={{ fontSize: '0.8rem', color: '#666', marginTop: '4px', display: 'block' }}>
+          Panel de Operadores
+        </a>
       </footer>
 
       {/* Modal de conexiones a redes sociales */}

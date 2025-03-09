@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import { RegisterPage, DashboardPage, CompleteProfilePage, SimulatorPage } from './pages';
+import { RegisterPage, DashboardPage, CompleteProfilePage, SimulatorPage, OperatorDashboardPage } from './pages';
 import { ChatbotProvider } from './components/chatbot';
 
 // Componente para proteger rutas que requieren autenticación
@@ -42,6 +42,7 @@ function App() {
                 </ProtectedRoute>
               } 
             />
+            <Route path="/operator" element={<OperatorDashboardPage />} />
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>

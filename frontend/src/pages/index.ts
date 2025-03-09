@@ -6,4 +6,5 @@
 export { default as RegisterPage } from './RegisterPage';
 export { default as DashboardPage } from './DashboardPage';
 export { default as CompleteProfilePage } from './CompleteProfilePage';
-export { default as SimulatorPage } from './SimulatorPage'; 
+export { default as SimulatorPage } from './SimulatorPage';
+export { default as OperatorDashboardPage } from './OperatorDashboardPage'; 
