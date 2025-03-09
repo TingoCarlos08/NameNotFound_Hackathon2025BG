@@ -1,5 +1,5 @@
 # 1. Construimos la app con Node.js
-FROM node:18 AS builder
+FROM node:20 AS builder
 WORKDIR /app
 COPY package.json ./
 RUN yarn install --frozen-lockfile
