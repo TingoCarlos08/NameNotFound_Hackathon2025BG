@@ -1,0 +1,164 @@
+.social-connections {
+  margin-bottom: 24px;
+}
+
+.social-connections-compact {
+  margin-bottom: 0;
+}
+
+.social-connections-header {
+  margin-bottom: 16px;
+}
+
+.social-connections-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.social-connections-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.social-networks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.social-connections-compact .social-networks-container {
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.social-network-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.social-connections-compact .social-network-item {
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+}
+
+.social-network-item:hover {
+  background-color: #f0f0f0;
+}
+
+.social-network-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.social-connections-compact .social-network-info {
+  gap: 8px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.social-connections-compact .social-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 0.9rem;
+}
+
+.social-icon.facebook {
+  background-color: #1877F2;
+}
+
+.social-icon.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.linkedin {
+  background-color: #0077B5;
+}
+
+.social-icon.twitter {
+  background-color: #000000;
+}
+
+.social-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.social-connections-compact .social-name {
+  font-size: 0.85rem;
+}
+
+.social-connected {
+  color: #4CAF50;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.social-connections-compact .social-connected {
+  font-size: 0.8rem;
+}
+
+.social-networks-note {
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.social-networks-note p {
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .social-network-item {
+    padding: 8px 12px;
+  }
+  
+  .social-connections-compact .social-network-item {
+    padding: 6px 10px;
+  }
+  
+  .social-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .social-connections-compact .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-network-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .social-network-item button {
+    align-self: stretch;
+  }
+} 

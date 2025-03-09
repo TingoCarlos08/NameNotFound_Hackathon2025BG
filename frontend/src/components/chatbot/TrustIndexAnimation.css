@@ -1,0 +1,132 @@
+/* Animación del Índice de Confianza */
+.trust-index-animation {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  padding: 8px 12px;
+  z-index: 1002;
+  animation: slide-in-top 0.5s ease, fade-out 0.5s ease 4.5s forwards;
+  max-width: 250px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@keyframes slide-in-top {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.trust-index-animation-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.trust-index-animation-icon {
+  font-size: 1.4rem;
+}
+
+.trust-index-animation-text {
+  flex: 1;
+  text-align: left;
+}
+
+.trust-index-animation-label {
+  font-size: 0.75rem;
+  color: #757575;
+  margin-bottom: 2px;
+}
+
+.trust-index-animation-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #E6007E;
+  display: flex;
+  align-items: baseline;
+}
+
+.trust-index-animation-max {
+  font-size: 0.75rem;
+  color: #757575;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Celebración */
+.trust-index-animation.celebrating {
+  background-color: #160f41;
+  padding-bottom: 12px;
+}
+
+.trust-index-animation.celebrating .trust-index-animation-label {
+  color: #f0f0f0;
+}
+
+.trust-index-animation.celebrating .trust-index-animation-value {
+  color: white;
+}
+
+.trust-index-animation.celebrating .trust-index-animation-max {
+  color: #f0f0f0;
+}
+
+.trust-index-celebration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti-container {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.confetti {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: -8px;
+  animation: confetti-fall 2.5s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) rotate(720deg);
+    opacity: 0;
+  }
+} 

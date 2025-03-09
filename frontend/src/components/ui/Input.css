@@ -1,0 +1,151 @@
+/* Input Component Styles */
+
+.trustbridge-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.trustbridge-input-container-fullwidth {
+  width: 100%;
+}
+
+.trustbridge-input-label {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 6px;
+}
+
+.trustbridge-input-label-error {
+  color: #F44336;
+}
+
+.trustbridge-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.trustbridge-input {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  color: #212121;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+/* Variant styles */
+.trustbridge-input-outlined {
+  border: 1px solid #BDBDBD;
+  background-color: transparent;
+  padding: 10px 12px;
+}
+
+.trustbridge-input-outlined:focus {
+  border-color: #E6007E;
+  box-shadow: 0 0 0 2px rgba(230, 0, 126, 0.1);
+  outline: none;
+}
+
+.trustbridge-input-filled {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #BDBDBD;
+  background-color: #F5F5F5;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 12px;
+}
+
+.trustbridge-input-filled:focus {
+  background-color: #EEEEEE;
+  border-bottom-color: #E6007E;
+  outline: none;
+}
+
+.trustbridge-input-standard {
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 10px 0;
+}
+
+.trustbridge-input-standard:focus {
+  border-bottom-color: #E6007E;
+  outline: none;
+}
+
+/* Size styles */
+.trustbridge-input-small {
+  font-size: 14px;
+  padding: 6px 10px;
+}
+
+.trustbridge-input-medium {
+  font-size: 16px;
+  padding: 10px 12px;
+}
+
+.trustbridge-input-large {
+  font-size: 18px;
+  padding: 12px 16px;
+}
+
+/* Error state */
+.trustbridge-input-error {
+  border-color: #F44336;
+}
+
+.trustbridge-input-error:focus {
+  border-color: #F44336;
+  box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.1);
+}
+
+/* Helper text */
+.trustbridge-input-helper-text {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  color: #757575;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.trustbridge-input-helper-text-error {
+  color: #F44336;
+}
+
+/* Icons */
+.trustbridge-input-start-icon,
+.trustbridge-input-end-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #757575;
+}
+
+.trustbridge-input-start-icon {
+  left: 12px;
+}
+
+.trustbridge-input-end-icon {
+  right: 12px;
+}
+
+/* Adjust padding when icons are present */
+.trustbridge-input-start-icon + .trustbridge-input {
+  padding-left: 40px;
+}
+
+.trustbridge-input-wrapper:has(.trustbridge-input-end-icon) .trustbridge-input {
+  padding-right: 40px;
+}
+
+/* Disabled state */
+.trustbridge-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #F5F5F5;
+} 

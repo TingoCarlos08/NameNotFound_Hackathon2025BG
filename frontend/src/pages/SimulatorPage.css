@@ -1,0 +1,484 @@
+.simulator-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.simulator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.simulator-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.simulator-scenario-card {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.simulator-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.simulator-footer {
+  padding: 16px 24px;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.simulator-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 16px;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(230, 0, 126, 0.2);
+  border-radius: 50%;
+  border-top-color: #E6007E;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Estilos para el componente de progreso */
+.simulator-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #757575;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.progress-step.active .step-indicator {
+  background-color: #E6007E;
+  color: white;
+}
+
+.progress-step.completed .step-indicator {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.step-label {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #757575;
+  text-align: center;
+}
+
+.progress-step.active .step-label {
+  color: #E6007E;
+  font-weight: 600;
+}
+
+.progress-connector {
+  position: absolute;
+  top: 16px;
+  height: 2px;
+  background-color: #e0e0e0;
+  width: 100%;
+  left: -50%;
+  z-index: 1;
+}
+
+.progress-step:first-child .progress-connector {
+  display: none;
+}
+
+.progress-step.active .progress-connector,
+.progress-step.completed .progress-connector {
+  background-color: #E6007E;
+}
+
+/* Estilos para la introducción del simulador */
+.simulator-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.simulator-intro h1 {
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 2rem;
+}
+
+.simulator-intro p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.simulator-benefits {
+  display: flex;
+  justify-content: space-around;
+  margin: 32px 0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.benefit-item {
+  flex: 1;
+  min-width: 200px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.benefit-icon {
+  font-size: 2rem;
+  color: #E6007E;
+  margin-bottom: 16px;
+}
+
+.benefit-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.benefit-description {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.start-button {
+  margin-top: 32px;
+}
+
+/* Estilos para el escenario del simulador */
+.scenario-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.scenario-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.scenario-option {
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scenario-option:hover {
+  border-color: #E6007E;
+  background-color: rgba(230, 0, 126, 0.05);
+}
+
+.scenario-option.selected {
+  border-color: #E6007E;
+  background-color: rgba(230, 0, 126, 0.1);
+}
+
+.option-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Estilos para la retroalimentación */
+.feedback-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedback-box {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.feedback-box p {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.impact-positive {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-left: 4px solid #4CAF50;
+}
+
+.impact-neutral {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-left: 4px solid #2196F3;
+}
+
+.impact-negative {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-left: 4px solid #FF9800;
+}
+
+.points-indicator {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #E6007E;
+}
+
+/* Estilos para los resultados */
+.simulator-results-card {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.results-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.score-circle::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.score-value {
+  position: relative;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.score-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-label span:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.score-points {
+  font-size: 1rem;
+  color: #666;
+}
+
+.performance-description {
+  text-align: center;
+  max-width: 600px;
+}
+
+.performance-description p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.recommendations-section {
+  margin-bottom: 32px;
+}
+
+.recommendations-section h3 {
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.recommendations-list {
+  padding-left: 24px;
+}
+
+.recommendations-list li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.trust-index-impact {
+  background-color: rgba(230, 0, 126, 0.05);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.trust-index-impact h3 {
+  color: #E6007E;
+  margin-bottom: 12px;
+}
+
+.trust-index-impact p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.trust-points {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #E6007E;
+  text-align: center;
+  padding: 8px;
+  background-color: rgba(230, 0, 126, 0.1);
+  border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .simulator-content {
+    padding: 24px 16px;
+  }
+  
+  .simulator-intro {
+    padding: 24px 16px;
+  }
+  
+  .simulator-benefits {
+    flex-direction: column;
+  }
+  
+  .benefit-item {
+    min-width: 100%;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+  }
+  
+  .results-summary {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .simulator-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .simulator-progress {
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
+  
+  .step-indicator {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  
+  .score-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .score-circle::before {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .score-value {
+    font-size: 1.5rem;
+  }
+} 

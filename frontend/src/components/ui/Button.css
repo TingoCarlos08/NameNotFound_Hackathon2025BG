@@ -1,0 +1,115 @@
+/* Button Component Styles */
+
+.trustbridge-button {
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Variant styles */
+.trustbridge-button-primary {
+  background-color: #E6007E;
+  color: #FFFFFF;
+}
+
+.trustbridge-button-primary:hover {
+  background-color: #B30062;
+}
+
+.trustbridge-button-secondary {
+  background-color: #160f41;
+  color: #FFFFFF;
+}
+
+.trustbridge-button-secondary:hover {
+  background-color: #0c0826;
+}
+
+.trustbridge-button-outline {
+  background-color: transparent;
+  color: #E6007E;
+  border: 1px solid #E6007E;
+}
+
+.trustbridge-button-outline:hover {
+  background-color: #FCF2F8;
+}
+
+.trustbridge-button-text {
+  background-color: transparent;
+  color: #E6007E;
+  border: none;
+}
+
+.trustbridge-button-text:hover {
+  background-color: #FCF2F8;
+}
+
+/* Size styles */
+.trustbridge-button-small {
+  padding: 4px 12px;
+  font-size: 14px;
+}
+
+.trustbridge-button-medium {
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+.trustbridge-button-large {
+  padding: 12px 24px;
+  font-size: 18px;
+}
+
+/* Full width */
+.trustbridge-button-fullwidth {
+  width: 100%;
+}
+
+/* Disabled state */
+.trustbridge-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Focus state */
+.trustbridge-button:focus {
+  outline: 2px solid #E6007E;
+  outline-offset: 2px;
+}
+
+/* Icon styles */
+.button-start-icon {
+  margin-right: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.button-end-icon {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Ripple effect */
+.trustbridge-button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.5s;
+}
+
+.trustbridge-button:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+} 

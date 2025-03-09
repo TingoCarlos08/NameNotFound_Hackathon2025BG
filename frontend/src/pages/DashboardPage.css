@@ -1,0 +1,515 @@
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
+
+.dashboard-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-greeting {
+  font-weight: 500;
+  color: #424242;
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  flex: 1;
+}
+
+.dashboard-welcome {
+  margin-bottom: 32px;
+}
+
+.dashboard-welcome h1 {
+  color: #160f41;
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+
+.dashboard-welcome p {
+  color: #757575;
+  font-size: 1.1rem;
+  max-width: 800px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: auto auto;
+  gap: 24px;
+  margin-top: 32px;
+  padding-right: 8px;
+}
+
+/* Estilos para las tarjetas específicas */
+.journey-card {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.next-level-card {
+  grid-column: 2;
+  grid-row: 1;
+  padding-right: 8px;
+}
+
+.trust-index-card {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.actions-card {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Trust Index Card */
+.trust-index {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.trust-index-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #E6007E;
+  line-height: 1;
+}
+
+.trust-index-label {
+  font-size: 1.2rem;
+  color: #757575;
+  margin-left: 8px;
+}
+
+.trust-index-progress {
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.trust-index-progress-bar {
+  height: 100%;
+  background-color: #E6007E;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.trust-index-description {
+  color: #424242;
+  font-size: 0.9rem;
+}
+
+/* Acciones para aumentar el Índice de Confianza */
+.trust-index-actions {
+  margin-top: 16px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.trust-index-actions-title {
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.trust-index-actions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.trust-index-actions-list li {
+  padding: 4px 0;
+  font-size: 0.85rem;
+  color: #757575;
+  display: flex;
+  align-items: center;
+}
+
+.trust-index-actions-list li::before {
+  content: '✓';
+  color: #4CAF50;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Journey Card */
+.journey-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 20px;
+}
+
+.journey-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 30%;
+  z-index: 2;
+  padding: 0 15px;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #757575;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.journey-step.active .step-number {
+  background-color: #E6007E;
+  color: white;
+}
+
+.journey-step.current .step-number {
+  box-shadow: 0 0 0 4px rgba(230, 0, 126, 0.2);
+  transform: scale(1.1);
+}
+
+.step-label {
+  font-size: 1.1rem;
+  color: #424242;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.step-description {
+  font-size: 0.9rem;
+  color: #757575;
+  line-height: 1.4;
+}
+
+.journey-connector {
+  height: 3px;
+  background-color: #E0E0E0;
+  flex: 1;
+  margin: 0 8px;
+  position: relative;
+  top: -20px;
+  transition: background-color 0.3s ease;
+}
+
+.journey-connector.active {
+  background-color: #E6007E;
+}
+
+/* Next Level Card */
+.next-level-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 10px 15px;
+}
+
+.next-level-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.next-level-details {
+  width: 100%;
+}
+
+.next-level-details h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.next-level-progress {
+  margin-top: 5px;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: #757575;
+  margin-bottom: 4px;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #160f41;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-value {
+  font-size: 0.8rem;
+  color: #757575;
+  text-align: right;
+}
+
+/* Loading State */
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(230, 0, 126, 0.2);
+  border-radius: 50%;
+  border-top-color: #E6007E;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error State */
+.dashboard-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.dashboard-error h2 {
+  color: #F44336;
+}
+
+.dashboard-footer {
+  padding: 16px;
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  color: #757575;
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding-right: 0;
+  }
+  
+  .journey-card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .next-level-card {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .trust-index-card {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  
+  .actions-card {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-welcome h1 {
+    font-size: 1.8rem;
+  }
+  
+  .dashboard-welcome p {
+    font-size: 1rem;
+  }
+  
+  .journey-steps {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 20px 10px;
+  }
+  
+  .journey-step {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: 16px;
+    padding: 0;
+  }
+  
+  .step-number {
+    margin-bottom: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  .step-label, .step-description {
+    margin: 0;
+  }
+  
+  .step-label {
+    font-size: 1rem;
+  }
+  
+  .step-description {
+    font-size: 0.8rem;
+  }
+  
+  .next-level-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .journey-connector {
+    width: 3px;
+    height: 24px;
+    margin: 0;
+    position: relative;
+    left: 20px;
+    top: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 16px;
+  }
+  
+  .trust-index-value {
+    font-size: 3rem;
+  }
+  
+  .next-level-info {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 15px;
+  }
+  
+  .next-level-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.8rem;
+    margin-top: 0;
+  }
+  
+  .next-level-details {
+    flex: 1;
+  }
+  
+  .next-level-details h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Modal de conexiones a redes sociales */
+.social-modal-content {
+  padding: 0 10px;
+}
+
+.social-modal-description {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Actions Card */
+.action-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.action-item span {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.next-level-card .MuiCardContent-root {
+  padding: 16px 20px;
+}
+
+.journey-card .MuiCardContent-root {
+  padding: 16px 24px;
+}
+
+.trust-index-card .trustbridge-card-content,
+.actions-card .trustbridge-card-content {
+  padding: 16px 20px;
+} 

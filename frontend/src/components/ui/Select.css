@@ -1,0 +1,154 @@
+.trustbridge-select-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.trustbridge-select-container-fullwidth {
+  width: 100%;
+}
+
+.trustbridge-select-label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.trustbridge-select-label-error {
+  color: #d32f2f;
+}
+
+.trustbridge-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.trustbridge-select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding-right: 32px; /* Espacio para la flecha */
+}
+
+.trustbridge-select:focus {
+  border-color: #E6007E;
+  box-shadow: 0 0 0 2px rgba(230, 0, 126, 0.1);
+}
+
+.trustbridge-select-error {
+  border-color: #d32f2f;
+}
+
+.trustbridge-select-error:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.1);
+}
+
+.trustbridge-select-arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #666;
+}
+
+.trustbridge-select:focus + .trustbridge-select-arrow {
+  color: #E6007E;
+}
+
+.trustbridge-select-error + .trustbridge-select-arrow {
+  color: #d32f2f;
+}
+
+.trustbridge-select-helper-text {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.trustbridge-select-helper-text-error {
+  color: #d32f2f;
+}
+
+/* Variantes */
+.trustbridge-select-outlined {
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.trustbridge-select-filled {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px 4px 0 0;
+  background-color: #f5f5f5;
+}
+
+.trustbridge-select-standard {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 24px;
+}
+
+/* Tamaños */
+.trustbridge-select-small {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  padding-right: 28px;
+}
+
+.trustbridge-select-medium {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  padding-right: 32px;
+}
+
+.trustbridge-select-large {
+  padding: 12px 16px;
+  font-size: 1rem;
+  padding-right: 36px;
+}
+
+/* Estilos para opciones */
+.trustbridge-select option {
+  padding: 8px;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trustbridge-select {
+    font-size: 0.9rem;
+  }
+  
+  .trustbridge-select-small {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .trustbridge-select-medium {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .trustbridge-select-large {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+} 

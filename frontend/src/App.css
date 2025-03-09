@@ -1,0 +1,174 @@
+/* App Styles */
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: #212121;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.app-tagline {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.2rem;
+  color: #757575;
+  margin-top: 0.5rem;
+}
+
+/* Main Content */
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Design Section */
+.design-section {
+  margin-bottom: 2rem;
+}
+
+.design-section h2 {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #E6007E;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #E6007E;
+}
+
+.design-section h3 {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Color Palette */
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.color-group {
+  flex: 1;
+  min-width: 300px;
+}
+
+.color-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.color-swatch {
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch span {
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.color-swatch code {
+  color: white;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Typography Showcase */
+.typography-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.typography-item {
+  margin-bottom: 1.5rem;
+}
+
+.typography-variants {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+}
+
+/* Component Showcase */
+.component-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.component-group {
+  margin-bottom: 2rem;
+}
+
+.component-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.component-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 400px;
+}
+
+/* Cards Row */
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Footer */
+.app-footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  text-align: center;
+  border-top: 1px solid #E0E0E0;
+  color: #757575;
+  font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .color-swatch {
+    width: 120px;
+    height: 80px;
+  }
+  
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+}
