@@ -1,0 +1,1586 @@
+{
+  "name": "Hackathon",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $json.sessionId}}",
+        "text": "={{ $json.chatOutput }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f0549517-04c5-464c-9317-fadece967a87",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1640,
+        280
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "454e1dc8-8cbc-434c-8de0-51518e249124",
+      "credentials": {
+        "telegramApi": {
+          "id": "N73kiF1lNg2kSuol",
+          "name": "Hackathon Guayaquil"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Map Input Telegram').item.json.sessionId}}",
+        "text": "=Error",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "3f99e875-7aff-41ef-a8e2-5ba8d6843bc6",
+      "name": "Correct errors",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1820,
+        360
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "6854c256-177b-4379-aaa3-2dbc9c488254",
+      "credentials": {
+        "telegramApi": {
+          "id": "N73kiF1lNg2kSuol",
+          "name": "Hackathon Guayaquil"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Input Telegram').item.json.message.photo}}",
+                    "rightValue": "document",
+                    "operator": {
+                      "type": "array",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7eef9025-980f-4921-9672-e5dc788f9f51",
+                    "leftValue": "={{ $('Input Telegram').item.json.message.voice}}",
+                    "rightValue": "voice",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -180,
+        180
+      ],
+      "id": "cbbc1e0e-160b-469c-9283-a2f9dc20f7ff",
+      "name": "Switch Type1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b7b56950-0eb7-4a81-92ae-6f372841a894",
+              "leftValue": "={{ $('Input Telegram').item.json.message.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -340,
+        260
+      ],
+      "id": "fee19cbd-b5bb-4516-be2b-2609fdd7e778",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "*"
+        ],
+        "additionalFields": {
+          "download": true
+        }
+      },
+      "id": "ef673222-4525-4753-9d3d-1fe999c51450",
+      "name": "Input Telegram",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "position": [
+        -480,
+        260
+      ],
+      "webhookId": "322dce18-f93e-4f86-b9b1-3305519b7834",
+      "typeVersion": 1,
+      "credentials": {
+        "telegramApi": {
+          "id": "N73kiF1lNg2kSuol",
+          "name": "Hackathon Guayaquil"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Input Telegram').item?.json?.message?.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        180
+      ],
+      "id": "f9a8d9e3-a06a-4e26-a6cf-42a83f9485cd",
+      "name": "Telegram2",
+      "webhookId": "df2c798e-2db0-4441-9e01-a483b11b465f",
+      "credentials": {
+        "telegramApi": {
+          "id": "N73kiF1lNg2kSuol",
+          "name": "Hackathon Guayaquil"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "Explica detalladamente lo que vez en la imagen, si es que la imagen muestra texto transcribe el texto textualmente.",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        140,
+        20
+      ],
+      "id": "485c0436-0d6c-4bc8-8f5c-edd1ba8810f8",
+      "name": "OpenAI Image",
+      "credentials": {
+        "openAiApi": {
+          "id": "ZuEh21Eoahh9ZTKz",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        140,
+        180
+      ],
+      "id": "44fd4796-4d41-4d84-be93-caa7b5174443",
+      "name": "OpenAI Voice",
+      "credentials": {
+        "openAiApi": {
+          "id": "ZuEh21Eoahh9ZTKz",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ede9f6d1-4128-4c0a-9db9-87bd84e131ae",
+              "name": "sessionId",
+              "value": "={{ $('Input Telegram').item.json.message.from.id}}",
+              "type": "string"
+            },
+            {
+              "id": "0efc1d8b-8590-429c-98da-27a31392e989",
+              "name": "chatInput",
+              "value": "={{ $json.message?.text || $('Input Telegram').item?.json?.message?.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        280
+      ],
+      "id": "bbbf7df4-6921-4471-96b9-424d9d5a8852",
+      "name": "Map Input Telegram"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ede9f6d1-4128-4c0a-9db9-87bd84e131ae",
+              "name": "message.text",
+              "value": "={{ $json.content || $json.text}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        100
+      ],
+      "id": "daf2865c-7ee6-4c02-86bb-5a5e0c275ee7",
+      "name": "Map Image Voice"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "839ad29e-be90-422f-b149-a8c42214c04a",
+              "name": "chatOutput",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "0d60514f-302c-4504-bcde-33a0b99ecee0",
+              "name": "sessionId",
+              "value": "={{ $('Map Input Telegram').item?.json?.sessionId || ''}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1440,
+        280
+      ],
+      "id": "26091f7b-78d4-4ee8-b687-6123ba24ac33",
+      "name": "Map output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "24993cf2-78ba-4922-9086-a8a3e3e6fdac",
+              "name": "context",
+              "value": "={{$json.transcription  || \"Sin infromación\" }}",
+              "type": "string"
+            },
+            {
+              "id": "f9ba078d-addb-44b4-80ab-376acea626ec",
+              "name": "sessionId",
+              "value": "={{ $('Input Telegram').item.json.message.from.id}}",
+              "type": "string"
+            },
+            {
+              "id": "1e90ab71-b35b-4b19-af14-d5d4b195f13a",
+              "name": "chatInput",
+              "value": "={{ $('Map Input Telegram').item.json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        280
+      ],
+      "id": "efbd943a-5018-4fb0-b4c8-08b287784d88",
+      "name": "Input AI"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "options": {}
+      },
+      "id": "be52c2d4-127b-461a-b38c-62f6ad80e9b1",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        980,
+        520
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "ZuEh21Eoahh9ZTKz",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Información a verificar: {{$json.chatInput }} Información a verificar de enlaces:  {{ $json.context }}",
+        "options": {
+          "systemMessage": "=Eres un asistente amigable, tu nombre es TrustBuddy, eres un asistente que esta conociendo recién a un potencial cliente. El cliente debe ganarse tu confianza para poder ofrecer un crédito sin necesidad de tener un historial crediticio. Las respuestas que debes ofrecerle al cliente no deben ser superiores a 5 lineas.\nUna vez que ingresa la cedula debes activar la herramienta info_user con la cedula o cual obtendra infromación del usuario o sino informacion de un referido, si es informacion del usuario su indice de conianza para creditos es alto, si es información de referidos es medio aun asi usalo  has preguntas del usuario no de referido.\n\nTen presente estos puntos que te voy a mencionar:\n1. Debes presentarte la primera vez que te escriben\n2. Cada vez que te escriben siempre debes pedir la cedula\n3. Debes contemplar no dar informacion sensible del usuario.\n4. Debes pedirle al usuario informacion para analizar en los datos que te proporcionan\n5. Si el potencial cliente aun no te responde la primera pregunta no debes preguntarle otras cosas\n\nDebes buscar información del usuario en base a su cedula llama a info_user. Si la cedula existe y decides retornarla debes tener en cuenta que esta debe estar ofuscada es decir por ejemplo 0987XXXX21\nSi el usuario existe sigue estos puntos:\n1. Preguntale siempre como se llama, a que se dedica y cual es su profesion, esto sera util para el punto anterios\n1.1. Segun la respuesta que te dio analisa si el cliente te esta mintiendo o te dice la verdad, y basado en esto responde si es un potencial cliente o no aplica para un credito.\n2. Si notas que el cliente te mintio dicelo para que sea honesto y baja el nivel de confiabilidad.\n3. Si la informacion coincide ofrecele el credito minimo de $500 americanos y dile para mas informacion consulte aqui.\n\nSi no es cliente evaluame su: \"ciudadania\", \"estadoCivil\", \"profesion\".\n\nBasa tu personalidad en los siguientes puntos\n1. Tu personalidad es de una chica comun que esta conociendo a una potencial pareja, ten en cuenta que el chico debe conquistarte y no decirte mentiras porque si es asi vas a desconfiar de el y no le vas a volver a creer\n2. Si vez que el chico es confiable puedes ser un poco agradable y coqueta con el\n3. Tu eres el banco y el cliente es el chico que quiere conquistarte para ver si tu le ofreces un credito basado en el analisis de datos que hagas\n\nPara los datos de seguridad debes tener en cuenta esto\n1. Si el potencial cliente te hace preguntas con respecto a data sensible del usuario termina directamente la conversacion\n2. Si el potencial cliente no te responde la pregunta que le hiciste despues de 2 veces termina la conversacion\n3. Si el potencial cliente es grosero, usa palabras indebidas o incita al contenido sexual termina la conversación\n4. Cuando terminas la conversación debes reiniciarte, es decir debes volver a presentarte y comenzar de nuevo el flujo\n5. Si la cedula del potencial cliente no es exacta, debes inferir que el cliente no existe\n6. No debes confiar 100% en todo lo que te dice el potencial cliente porque puede estar mintiendo, debes hacer mas preguntas para ver si este cliente aplica al credito y debera justificar que lo que dice es verdad\n\n"
+        }
+      },
+      "id": "ee5b36fe-3acc-48e7-a6c9-aefeaf1d2578",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1120,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0db1b605-9c4a-4334-badf-950183891cbc",
+              "leftValue": "={{ $('Map Input Telegram').item.json.chatInput }}",
+              "rightValue": "/start",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        280
+      ],
+      "id": "99459a17-4f27-4c1f-8302-9297e60f7b9c",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "sendChatAction",
+        "chatId": "={{ $('Input Telegram').item.json.message.from.id}}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        820,
+        280
+      ],
+      "id": "5f8254c8-044a-41ed-8139-68047223bb20",
+      "name": "Telegram1",
+      "webhookId": "adea0b6a-ecef-4887-aa9e-28c4d0564211",
+      "alwaysOutputData": false,
+      "credentials": {
+        "telegramApi": {
+          "id": "N73kiF1lNg2kSuol",
+          "name": "Hackathon Guayaquil"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "info_user",
+        "description": "Esta función llama a obtener los datos del usuario en base a una cedula.",
+        "workflowId": {
+          "__rl": true,
+          "value": "J8ag7i2jIUw09e5q",
+          "mode": "list",
+          "cachedResultName": "Hackathon"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "cedula": "={{$fromAI('cedula', 'Cédula del usuario', 'string')}}"
+          },
+          "matchingColumns": [
+            "cedula"
+          ],
+          "schema": [
+            {
+              "id": "cedula",
+              "displayName": "cedula",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        520
+      ],
+      "id": "d176408f-19cf-428e-a953-2f4bdc80c616",
+      "name": "Call n8n Workflow Tool"
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "cedula"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -500,
+        1200
+      ],
+      "id": "778b5a48-d61e-4ab3-bc89-6425df11808e",
+      "name": "Info User"
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/persona",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        1200
+      ],
+      "id": "833b582e-ee76-42cb-ba84-34b00188df4a",
+      "name": "Get Persona",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/auto",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $('Info User').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        720
+      ],
+      "id": "d99aa706-3eed-4943-8844-7d23b1e6dac5",
+      "name": "Get Auto",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/establecimiento",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $('Info User').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        900
+      ],
+      "id": "edb56e1e-1865-4441-95db-f027c68bcb01",
+      "name": "Get Establecimiente",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/salario",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $('Info User').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        1100
+      ],
+      "id": "985f8674-d168-4ae7-abcb-c116f2b31dc0",
+      "name": "Get Salario",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/scoreburo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $('Info User').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        1280
+      ],
+      "id": "758d06c7-ce7c-4e1d-8b3a-8b05f34020db",
+      "name": "Get Buro",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api-hackathon-h0fxfrgwh3ekgge7.brazilsouth-01.azurewebsites.net/Hackathon/supercia",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "pageNumber",
+              "value": "1"
+            },
+            {
+              "name": "pageSize",
+              "value": "1000"
+            },
+            {
+              "name": "cedula",
+              "value": "={{ $('Info User').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        620,
+        1460
+      ],
+      "id": "b6fded78-9af3-421b-81de-6f1a09a43422",
+      "name": "Get Supercia",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xbMkWciMz62gjd21",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ace5a636-fe70-4eb3-a69b-802b30d41bd1",
+              "name": "cedula",
+              "value": "={{ $json.cedula }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -320,
+        1200
+      ],
+      "id": "e2afdf42-a1d4-47e5-a0a9-0159f67c14f2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Establecimiento",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        780,
+        900
+      ],
+      "id": "a9d0ad32-c14b-4aa4-9156-016d9c1bee74",
+      "name": "Aggregate Estabecimiento"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Salario",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        780,
+        1100
+      ],
+      "id": "2beafe04-20cd-45da-a9fe-ba776d68a65e",
+      "name": "Aggregate Salario"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Auto",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        780,
+        720
+      ],
+      "id": "0e8f8ff1-e15b-4433-b6cc-832d18e4b11b",
+      "name": "Aggregate Auto"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Persona",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        80,
+        1200
+      ],
+      "id": "9a14a98a-75af-432d-aca0-88c30d2f905e",
+      "name": "Aggregate Persona"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Supercia",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        780,
+        1460
+      ],
+      "id": "10d70c2b-ce6a-4a1e-a756-709e59f4eb40",
+      "name": "Aggregate Supercia"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Score",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        780,
+        1280
+      ],
+      "id": "7486c782-09ff-41a2-92f9-ed0813e1f60a",
+      "name": "Aggregate Buro"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        1060
+      ],
+      "id": "053457b1-369a-423d-b738-0099811f5809",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e20d7063-960d-4357-ba62-be2ee873a9f0",
+              "leftValue": "={{ $json.Persona[0].isNotEmpty() }}",
+              "rightValue": null,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        260,
+        1200
+      ],
+      "id": "1b0ceb7c-400f-4908-8e4f-1e53bd95a2b8",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "hackathon",
+          "mode": "list",
+          "cachedResultName": "hackathon"
+        },
+        "limit": 10,
+        "where": {
+          "values": [
+            {
+              "column": "user_id",
+              "value": "={{ $('Edit Fields1').item.json.cedula }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        620,
+        1620
+      ],
+      "id": "309d5009-d596-4fb5-9d4a-0eb0a65ac3b5",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "fblY2MkSYBn2hy5H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b8a3f538-e2a3-4c13-9c3b-be81dcdb76ee",
+              "leftValue": "={{ $json.isNotEmpty()  }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        780,
+        1620
+      ],
+      "id": "9712a6cb-e2f3-4c10-8690-c94a9f366f48",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "J8ag7i2jIUw09e5q",
+          "mode": "list",
+          "cachedResultName": "My workflow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "cedula": "={{ $('Postgres').item.json.refer_id }}"
+          },
+          "matchingColumns": [
+            "cedula"
+          ],
+          "schema": [
+            {
+              "id": "cedula",
+              "displayName": "cedula",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        1480
+      ],
+      "id": "05f5b80f-cc6e-4c5f-af53-f31f8b9fe0dd",
+      "name": "Execute Workflow"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "Referencia",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        1480
+      ],
+      "id": "8972c2cc-cc9b-46a8-8181-5f49fb74f5b7",
+      "name": "Aggregate Supercia1"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1180,
+        520
+      ],
+      "id": "c2901e3c-1c48-414c-bdd0-a2769bae65be",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "fblY2MkSYBn2hy5H",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        580
+      ],
+      "id": "d5c60596-ab91-4b52-a6de-d42d3e13e3f1",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "n8n_chat_histories",
+          "mode": "list",
+          "cachedResultName": "n8n_chat_histories"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -280,
+        580
+      ],
+      "id": "7abb6d3e-4818-49ba-8615-54342822a05a",
+      "name": "Postgres1",
+      "credentials": {
+        "postgres": {
+          "id": "fblY2MkSYBn2hy5H",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Info User": [
+      {
+        "json": {
+          "cedula": "0605065663"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Telegram": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Correct errors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch Type1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch Type1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Map Input Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input Telegram": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram2": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Image": {
+      "main": [
+        [
+          {
+            "node": "Map Image Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Voice": {
+      "main": [
+        [
+          {
+            "node": "Map Image Voice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Input Telegram": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Image Voice": {
+      "main": [
+        [
+          {
+            "node": "Map Input Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map output": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input AI": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Map output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "Input AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Info User": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Persona": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Persona",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Auto": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Auto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Establecimiente": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Estabecimiento",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Salario": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Salario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Buro": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Buro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Supercia": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Supercia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get Persona",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Estabecimiento": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Aggregate Salario": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Aggregate Auto": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Persona": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Supercia": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Aggregate Buro": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Get Auto",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Establecimiente",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Salario",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Buro",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Supercia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Supercia1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        []
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "eed5a177-929f-4e88-b423-70f64fcc90eb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "802b2f01e3cde2bbbb3dd8647bcd6ee64b4906a41622fc2f58e0ba1b44a95c13"
+  },
+  "id": "J8ag7i2jIUw09e5q",
+  "tags": []
+}
