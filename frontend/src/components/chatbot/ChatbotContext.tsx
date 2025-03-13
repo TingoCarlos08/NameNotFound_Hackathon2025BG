@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { Message } from './Chatbot';
-import { OnboardingStep, onboardingFlow, getNextStep } from './OnboardingFlow';
-import { TrustEvent, TrustHistory, TrustAction, addTrustEvent, getTrustActionExplanation, getCelebrationMessage } from './TrustIndexCalculator';
+import {  onboardingFlow, getNextStep } from './OnboardingFlow';
+import { TrustHistory, TrustAction, addTrustEvent, getTrustActionExplanation, getCelebrationMessage } from './TrustIndexCalculator';
 
 interface ChatbotContextType {
   isOpen: boolean;
@@ -19,6 +19,8 @@ interface ChatbotContextType {
   addTrustAction: (action: TrustAction, details?: string, value?: number) => void;
   showTrustAnimation: boolean;
   celebrationThreshold: number | null;
+  setIsTyping: (isTyping: boolean) => void;
+  
 }
 
 export interface UserProfile {
@@ -294,6 +296,7 @@ export const ChatbotProvider: React.FC<ChatbotProviderProps> = ({ children }) =>
     currentOnboardingStep,
     handleUserResponse,
     isTyping,
+    setIsTyping,
     userProfile,
     updateUserProfile,
     addTrustAction,

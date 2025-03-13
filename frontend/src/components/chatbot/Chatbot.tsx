@@ -9,6 +9,7 @@ export interface Message {
   text: string;
   sender: 'user' | 'bot';
   timestamp: Date;
+  isHtml?: boolean;
 }
 
 export interface ChatbotProps {
@@ -21,6 +22,13 @@ export interface ChatbotProps {
   isTyping?: boolean;
   currentOnboardingStep?: string | null;
 }
+
+const MessageContent: React.FC<{ message: Message }> = ({ message }) => {
+  if (message.isHtml) {
+    return <div dangerouslySetInnerHTML={{ __html: message.text }} />;
+  }
+  return <>{message.text}</>;
+};
 
 const Chatbot: React.FC<ChatbotProps> = ({
   userName = 'Usuario',
@@ -126,12 +134,12 @@ const Chatbot: React.FC<ChatbotProps> = ({
           <div className="chatbot-content">
             {/* Mensajes */}
             <div className="chatbot-messages">
-              {messages.map(message => (
+              {messages.map((message) => (
                 <div 
                   key={message.id} 
                   className={`message ${message.sender}`}
                 >
-                  {message.text}
+                  <MessageContent message={message} />
                   <span className="message-time">
                     {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
